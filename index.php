@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__.'\vendor\yandex\geo\autoload.php';
+require_once 'vendor/yandex/geo/autoload.php';
 
 $shir = '';
 $dolg = '';
