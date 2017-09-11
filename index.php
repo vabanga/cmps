@@ -8,7 +8,7 @@ $adress = '';
 $api = new \Yandex\Geo\Api();
 
 
-if($_POST['serch']){
+if(!empty($_POST['serch'])){
     $adr = $_POST['adres'];
     $api->setQuery("$adr");
 }
@@ -44,6 +44,25 @@ foreach ($collection as $item) {
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+    <script type="text/javascript">
+        ymaps.ready(init);
+        var myMap,
+            myPlacemark;
+
+        function init(){
+            myMap = new ymaps.Map("map", {
+                center: [<?=$shir?>, <?= $dolg ?>],
+                zoom: 18
+            });
+
+            myPlacemark = new ymaps.Placemark([<?=$shir?>, <?= $dolg ?>], {
+                hintContent: '<?= $adress?>'
+            });
+
+            myMap.geoObjects.add(myPlacemark);
+        }
+    </script>
     <title>Document</title>
 </head>
 <body>
@@ -59,6 +78,9 @@ foreach ($collection as $item) {
     <?php
 }
 ?>
+<div id="map" style="width: 600px; height: 400px">
+
+</div>
 </body>
 </html>
 
